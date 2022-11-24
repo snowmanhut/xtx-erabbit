@@ -4,6 +4,8 @@ import TopCategory from '@/views/category'
 import SubCategory from '@/views/category/sub'
 const Home = () => import('@/views/home')
 const Layout = () => import('@/views/Layout.vue')
+const Goods = () => import('@/views/goods/index')
+const Login = () => import('@/views/login')
 
 const routes = [
   {
@@ -12,9 +14,11 @@ const routes = [
     children: [
       { path: '', component: Home },
       { path: '/category/:id', component: TopCategory },
-      { path: '/category/sub/:id', component: SubCategory }
+      { path: '/category/sub/:id', component: SubCategory },
+      { path: '/product/:id', component: Goods }
     ]
-  }
+  },
+  { path: '/login', component: Login }
 ]
 
 const router = createRouter({

@@ -4,11 +4,11 @@
       <!-- 面包屑 -->
       <SubBread />
       <!-- 筛选区 -->
-      <SubFilter  @sort-change="changeFilter"/>
+      <SubFilter  @filter-change="changeFilter"/>
       <!-- 结果区域 -->
       <div class="goods-list">
         <!-- 排序 -->
-        <SubSort @filter-change="changeSort"/>
+        <SubSort @sort-change="changeSort"/>
         <!-- 列表 -->
         <ul>
           <li v-for="item in goodsList" :key="item.id" >

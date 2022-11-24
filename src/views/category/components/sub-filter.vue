@@ -3,13 +3,13 @@
     <div class="item">
       <div class="head">品牌：</div>
       <div class="body">
-        <a :class="{active:filterData.selectedBrand===brand.id}" href="javasript:;" v-for="brand in filterData.brands" :key="brand.id">{{brand.name}}</a>
+        <a @click="changeBrand(brand.id)" :class="{active:filterData.brands.selectedBrand===brand.id}"  v-for="brand in filterData.brands" :key="brand.id">{{brand.name}}</a>
       </div>
     </div>
     <div class="item" v-for="p in filterData.saleProperties" :key="p.id">
       <div class="head">{{p.name}}：</div>
       <div class="body">
-        <a :class="{active:p.selectedProp===attr.id}" href="javasript:;" v-for="attr in p.properties" :key="attr.id">{{attr.name}}</a>
+        <a @click="changeAttr(p,attr.id)" :class="{active:p.selectedProp===attr.id}" v-for="attr in p.properties" :key="attr.id">{{attr.name}}</a>
       </div>
     </div>
   </div>
@@ -41,11 +41,11 @@ export default {
         filterLoading.value = true
         newVal && findSubCategoryFilter(route.params.id).then(({ result }) => {
         // 品牌全部
-          result.selectedBrand = null
+          result.brands.selectedBrand = null
           result.brands.unshift({ id: null, name: '全部' })
           // 销售属性全部
           result.saleProperties.forEach(p => {
-            p.selectedProp = undefined
+            p.selectedProp = null
             p.properties.unshift({ id: null, name: '全部' })
           })
           filterData.value = result
